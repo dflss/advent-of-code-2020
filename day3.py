@@ -12,5 +12,9 @@ def slope(right, down):
             tree_count += 1
     return tree_count
 
+
+### Part 1 ###
 print(slope(3,1))
+
+### Part 2 ###
 print(slope(1,1)*slope(3,1)*slope(5,1)*slope(7,1)*slope(1,2))

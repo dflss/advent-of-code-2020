@@ -4,6 +4,7 @@ def find2020_2(numbers):
             if int(number) + int(number2) == 2020:
                 return (number, number2, int(number)*int(number2))
 
+
 def find2020_3(numbers):
     for i, number in enumerate(numbers):
         for j, number2 in enumerate(numbers, i):
@@ -11,7 +12,12 @@ def find2020_3(numbers):
                 if int(number) + int(number2) + int(number3) == 2020:
                     return (number, number2, number3, int(number)*int(number2)*int(number3))
 
+
 with open("day1_data.txt", "r") as file:
     numbers = file.read().splitlines()
+
+### Part 1 ###
 print(find2020_2(numbers))
+
+### Part 2 ###
 print(find2020_3(numbers))

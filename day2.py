@@ -1,3 +1,5 @@
+### Part 1 ###
+
 with open("day2_data.txt", "r") as file:
     lines = file.read().splitlines()
 correct_count = 0
@@ -15,6 +17,8 @@ for line in lines:
     if letter_count <= rule_max and letter_count >= rule_min:
         correct_count += 1
 print(correct_count)
+
+### Part 2 ###
 
 with open("day2_data.txt", "r") as file:
     lines = file.read().splitlines()

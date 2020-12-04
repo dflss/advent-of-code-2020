@@ -1,3 +1,5 @@
+### Part 1 ###
+
 with open("day4_data.txt", "r") as file:
     lines = file.read()
 passports = lines.split("\n\n")
@@ -14,8 +16,8 @@ for passport in passports:
 print(valid_count)
 
 
+### Part 2 ###
 import re
-
 
 
 def validate_byr(value):
