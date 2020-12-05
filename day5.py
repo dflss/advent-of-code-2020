@@ -38,5 +38,8 @@ def get_missing_seat_id():
                 return id
 
 
+### Part 1 ###
 print(get_highest_seat_id())
+
+### Part 2 ###
 print(get_missing_seat_id())
