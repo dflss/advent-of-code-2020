@@ -6,6 +6,8 @@ def parse_input_file():
         lines = file.readlines()
     return [int(line) for line in lines]
 
+
+### Part 1 ###
 numbers = parse_input_file()
 numbers.append(0)
 numbers.sort()
@@ -22,6 +24,7 @@ for i in range(1, len(numbers), 1):
 print(jolts_1 * jolts_3)
 
 
+### Part 2 ###
 possibilities = defaultdict(int)
 possibilities[0] = 1
 for num in numbers:

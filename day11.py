@@ -152,6 +152,7 @@ def apply_new_rule_2(data):
     return data_copy
 
 
+### Part 1 ###
 data = parse_input_file()
 while True:
     new_data = apply_rule_1(data)
@@ -168,6 +169,7 @@ for row in data:
 print(occupied_count)
 
 
+### Part 2 ###
 data = parse_input_file()
 while True:
     new_data = apply_new_rule_1(data)
