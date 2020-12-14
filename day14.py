@@ -36,6 +36,16 @@ def part_1():
             memory[address] = value
     return sum(memory.values())
 
+
+def get_floating_addresses(address):
+    i = address.find('X')
+    if i == -1:
+        return [address]
+    a1 = get_floating_addresses(address[:i] + '0' + address[i + 1:])
+    a2 = get_floating_addresses(address[:i] + '1' + address[i + 1:])
+    return a1 + a2
+
+
 def part_2():
     input = parse_input_file()
     mask = ''
@@ -45,30 +55,18 @@ def part_2():
         if line_content[0] == 'mask':
             mask = line_content[1]
         else:
-            address = decimal_to_binary(int(line_content[0].split('[')[1].split(']')[0]))
-            addresses = [[]]
+            floating_address = decimal_to_binary(int(line_content[0].split('[')[1].split(']')[0]))
             value = int(line_content[1])
             for index, bit in enumerate(mask):
-                if bit == 'X':
-                    to_append = []
-                    for addr in addresses:
-                        new_addr = addr.copy()
-                        addr.append('0')
-                        new_addr.append('1')
-                        to_append.append(new_addr)
-                    addresses.extend(to_append)
-                elif bit == '0':
-                    for addr in addresses:
-                        addr.append(address[index])
-                else:
-                    for addr in addresses:
-                        addr.append(bit)
-            for addr in addresses:
-                memory[binary_to_decimal(int(''.join(addr)))] = value
+                if bit != '0':
+                    floating_address[index] = bit
+            addresses = list(map(lambda l: int(l, 2), get_floating_addresses(''.join(floating_address))))
+            for address in addresses:
+                memory[address] = value
     return sum(memory.values())
 
 ### Part 1 ###
-print(part_1())
+# print(part_1())
 
 ### Part 2 ###
 print(part_2())
