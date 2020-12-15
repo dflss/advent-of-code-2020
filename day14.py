@@ -66,7 +66,7 @@ def part_2():
     return sum(memory.values())
 
 ### Part 1 ###
-# print(part_1())
+print(part_1())
 
 ### Part 2 ###
 print(part_2())
