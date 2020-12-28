@@ -27,12 +27,12 @@ def part_1():
     print(score)
 
 
-def play(deck1, deck2):
-    if (max_card := max(deck1)) > max(deck2) and max_card > len(deck1) + len(deck2):
+def play(deck1, deck2, first_round):
+    if max(deck1) > max(deck2) and not first_round:
         return 1, deck1
     states = set()
     while not (len(deck1) == 0 or len(deck2) == 0):
-        if (state := str((deck1, deck2))) in states:
+        if (state := (tuple(deck1), tuple(deck2))) in states:
             return 1, deck1
         states.add(state)
         card1 = deck1.popleft()
@@ -40,7 +40,7 @@ def play(deck1, deck2):
         if len(deck1) >= card1 and len(deck2) >= card2:
             subdeck1 = deque(islice(deck1, 0, card1))
             subdeck2 = deque(islice(deck2, 0, card2))
-            winner, _ = play(subdeck1, subdeck2)
+            winner, _ = play(subdeck1, subdeck2, False)
             if winner == 1:
                 deck1.append(card1)
                 deck1.append(card2)
@@ -61,7 +61,7 @@ def part_2():
     input = parse_input_file()
     deck1 = deque([int(i) for i in input[0].splitlines()[1:]])
     deck2 = deque([int(i) for i in input[1].splitlines()[1:]])
-    winner, winning_deck = play(deck1, deck2)
+    winner, winning_deck = play(deck1, deck2, True)
     score = 0
     for i, card in enumerate(reversed(winning_deck)):
         score += (i + 1) * card
