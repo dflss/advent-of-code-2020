@@ -28,6 +28,8 @@ def part_1():
 
 
 def play(deck1, deck2):
+    if (max_card := max(deck1)) > max(deck2) and max_card > len(deck1) + len(deck2):
+        return 1, deck1
     states = set()
     while not (len(deck1) == 0 or len(deck2) == 0):
         if (state := str((deck1, deck2))) in states:
